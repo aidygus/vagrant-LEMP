@@ -1,0 +1,13 @@
+# Install nginx service and configure it
+---
+- name: Install Nginx
+  yum: pkg={{ item }} enablerepo=epel state=installed
+  with_items:
+    - nginx
+
+- name: Copy the nginx configuration file 
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+  notify: 
+   - restart nginx
+- name: start the nginx service
+  service: name=nginx state=started enabled=yes

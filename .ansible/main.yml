@@ -1,0 +1,17 @@
+# A simple setup for a LEMP stack using php version 5.6
+#
+# @author Aidan Gustard (2015)
+# 
+---
+  - name: Provisions a basic LEMP server on php 5.6
+    hosts: all
+    sudo: yes
+    user:vagrant
+    
+    roles:
+      - core
+      - nginx
+#      - mysql
+      - php
+#      - phpmyadmin
+#      - memcached

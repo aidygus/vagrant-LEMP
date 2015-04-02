@@ -1,0 +1,30 @@
+# Install php
+---
+  - name: Installing PHP stack
+    vars_prompt:
+    - name: "version_check"
+      prompt: "Which version of php 5.x to install? (3, 5, 6)?"
+      default: "6"
+
+  - name: Enabling remi 5.5
+    copy: src=../env/remi55.repo dest=/etc/yum.repos.d/remi.repo
+    when: version_check == "5"
+
+  - name: Enabling remi 5.6
+    copy: src=../env/remi56.repo dest=/etc/yum.repos.d/remi.repo
+    when: version_check == "6"
+
+  - name: Install PHP
+    yum: pkg={{ item }} enablerepo=remi state=installed
+    with_items:
+      - php
+      - php-cli
+      - php-fpm
+      - php-mysql
+      - php-devel
+      - php-pear
+      - php-mbstring
+      - php-mcrypt
+      - php-openssl
+      - php-xml
+      - php-json

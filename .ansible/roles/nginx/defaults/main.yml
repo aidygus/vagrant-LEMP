@@ -1,0 +1,26 @@
+---
+nginx_user: nginx
+log_dir: "/var/log/nginx"
+access_log_name: "access.log"
+error_log_name: "error.log"
+
+max_clients: 512
+
+http_params:
+  sendfile: "on"
+  tcp_nopush: "on"
+  tcp_nodelay: "on"
+  keepalive_timeout: "30"
+  autoindex: "on"
+  keepalive_requests: "200"
+  client_max_body_size: "25M"
+
+gzip_params:
+  gzip:  "on"
+  gzip_http_version: "1.1"
+  gzip_vary: "on"
+  gzip_comp_level" "6"
+  gzip_proxied: "any"
+  gzip_types: "text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript text/x-js"
+  gzip_buffers: "16 8k"
+  gzip_disable: "\"MSIE [1-6]\.(?!.*SV1)\"";
