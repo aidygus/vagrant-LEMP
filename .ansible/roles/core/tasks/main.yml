@@ -1,26 +1,27 @@
 # role / core 
 # Ensures that the system is updated and imports the remi and mysql repositories
 ---
-  # Update build packages
-  - name: Updating core packages to latest releases
-    yum: name=* state=latest
+# Update build packages
+- name: Updating core packages to latest releases
+  yum: name=* state=latest
 
-  # Add remi repo
-  - name: Adding Remi
-    yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+# Add remi repo
+- name: Adding Remi
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
 
-  # Add epel reop
-  - name: Add epel repo
-    yum: name=https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
+# Add epel reop
+- name: Add epel repo
+  yum: name=https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
 
-  # Centos 7 comes with MariaDB by default, Adding mysql repo
-  - name: Add mysql repo 
-    yum: name=http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm state=present
+# Centos 7 comes with MariaDB by default, Adding mysql repo
+- name: Add mysql repo 
+  yum: name=http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm state=present
 
-  # Add some core packages
-  - name: Adding essential packages
-    yum: pkg:{{ item }} state=installed
-    with_items:
-      - git_core
-      - nano
-      - bash_completion
+# Add some core packages
+- name: Adding essential packages
+  yum: pkg={{ item }} state=installed enablerepo=remi
+  with_items:
+    - git-core
+    - nano
+    - bash-completion
+

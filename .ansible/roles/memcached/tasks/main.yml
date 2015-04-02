@@ -1,0 +1,13 @@
+---
+- name: Install Memcached and Dependencies
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - memcached
+    - libmemcached-devel
+
+- name: Copy configuration file
+  template: src=memcached.conf dest=/etc/memcached.conf
+  notify: restart memcached
+
+- name: Start Memcached
+  service: name=memcached state=started enabled=true

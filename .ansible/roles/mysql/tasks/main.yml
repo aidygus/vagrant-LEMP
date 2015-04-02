@@ -1,0 +1,6 @@
+---
+- name: Install MySQL
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - mysql
+    - mysql-server

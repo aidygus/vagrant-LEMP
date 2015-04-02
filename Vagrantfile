@@ -27,14 +27,13 @@ Vagrant.configure(API_VERSION) do |config|
   config.vm.provision "ansible" do | ansible |
     ansible.sudo = true
     ansible.playbook = ".ansible/main.yml"
-    ansible.inventory_path = ".ansible/hosts"
   end
 
 #  config.vm.synced_folder ".", "/vagrant", :nfs => true
 
   config.vm.provider "virtualbox" do |v|
     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
-    v.memory = VB_MEMORY
-    v.cpus = VB_CPUS
+#    v.memory = VB_MEMORY
+#    v.cpus = VB_CPUS
   end  
 end

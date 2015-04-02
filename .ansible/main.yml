@@ -3,15 +3,19 @@
 # @author Aidan Gustard (2015)
 # 
 ---
-  - name: Provisions a basic LEMP server on php 5.6
-    hosts: all
-    sudo: yes
-    user:vagrant
-    
-    roles:
-      - core
-      - nginx
-#      - mysql
-      - php
-#      - phpmyadmin
-#      - memcached
+- hosts: all
+  sudo: yes
+  user: vagrant
+
+  vars_prompt:
+  - name: "version_check"
+    prompt: "Which version of php 5.x to install? (3, 5 or 6)?"
+    default: "6"
+
+  roles:
+     - core
+     - nginx
+     - mysql
+     - php
+     - phpmyadmin
+     - memcached

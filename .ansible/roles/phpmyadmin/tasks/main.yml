@@ -1,0 +1,5 @@
+---
+- name: Install PHPMyadmin
+  yum: pkg={{ item }} state=installed enablerepo=remi
+  with_items:
+    - phpmyadmin

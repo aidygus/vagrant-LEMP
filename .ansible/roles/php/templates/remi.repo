@@ -1,8 +1,13 @@
+#{{ ansible_managed }}
 [remi]
 name=Les RPM de remi pour Enterprise Linux 7 - $basearch
 #baseurl=http://rpms.famillecollet.com/enterprise/7/remi/$basearch/
 mirrorlist=http://rpms.famillecollet.com/enterprise/7/remi/mirror
+{% if version_check == "3" %}
+enabled=1
+{% else %}
 enabled=0
+{% endif %}
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
@@ -11,7 +16,11 @@ name=Les RPM de remi de PHP 5.5 pour Enterprise Linux 7 - $basearch
 #baseurl=http://rpms.famillecollet.com/enterprise/7/php55/$basearch/
 mirrorlist=http://rpms.famillecollet.com/enterprise/7/php55/mirror
 # WARNING: If you enable this repository, you must also enable "remi"
+{% if version_check == "5" %}
+enabled=1
+{% else %}
 enabled=0
+{% endif %}
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
@@ -20,7 +29,11 @@ name=Les RPM de remi de PHP 5.6 pour Enterprise Linux 7 - $basearch
 #baseurl=http://rpms.famillecollet.com/enterprise/7/php56/$basearch/
 mirrorlist=http://rpms.famillecollet.com/enterprise/7/php56/mirror
 # WARNING: If you enable this repository, you must also enable "remi"
+{% if version_check == "6" %}
 enabled=1
+{% else %}
+enabled=0
+{% endif %}
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
